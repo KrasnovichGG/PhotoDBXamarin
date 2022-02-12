@@ -20,7 +20,6 @@ namespace PhotoDBXamarin.Models
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        [Unique]
         public string Name { get; set; }
         public string  Imagepath { get; set; }   
     }

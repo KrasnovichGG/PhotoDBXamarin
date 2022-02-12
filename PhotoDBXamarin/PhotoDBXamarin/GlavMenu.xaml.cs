@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoDBXamarin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -13,6 +14,7 @@ namespace PhotoDBXamarin
 {
     public partial class MainPage : ContentPage
     {
+        string path;
         string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         public MainPage()
         {
@@ -25,6 +27,7 @@ namespace PhotoDBXamarin
             {
                 // выбираем фото
                 var photo = await MediaPicker.PickPhotoAsync();
+                path = photo.FullPath;
                 // загружаем в ImageView
                 //img.Source = ImageSource.FromFile(photo.FullPath);
             }
@@ -56,6 +59,7 @@ namespace PhotoDBXamarin
                     await stream.CopyToAsync(newStream);
 
                 Debug.WriteLine($"Путь фото {photo.FullPath}");
+                path = photo.FullPath;
                 // загружаем в ImageView
                 //img.Source = ImageSource.FromFile(photo.FullPath);
                 UpdateList();
@@ -68,12 +72,30 @@ namespace PhotoDBXamarin
         void UpdateList()
         {
             ImageList.ItemsSource = null;
-            ImageList.SelectedItem = App.Db.GetProjects();
+            ImageList.ItemsSource = App.Db.GetProjects();
         }
 
         private void imgList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             //img.Source =  e.SelectedItem;
+        }
+
+        private void BtnADD_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                App.Db.SaveItem(new Models.ProjectModel(Namelabel.Text, path));
+                UpdateList();
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Error", ex.Message, "OK");  
+            }
+        }
+
+        private async void ImageList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new PhotoPage((ProjectModel)e.Item));
         }
     }
 }

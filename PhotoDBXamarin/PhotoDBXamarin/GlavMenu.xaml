@@ -33,6 +33,7 @@
         <StackLayout Orientation="Horizontal" HeightRequest="60" Margin="0,20,0,0">
             <Button
                 x:Name="BtnADD"
+                Clicked="BtnADD_Clicked"
                 HorizontalOptions="FillAndExpand"
                 WidthRequest="150"
                 BorderColor="LightBlue"
@@ -42,19 +43,21 @@
                 Text="Добавить"
                 CornerRadius="60"/>
             </StackLayout>
-        <ListView
+        <ScrollView>
+            <ListView
             x:Name="ImageList"
             HasUnevenRows="True"
-            ItemSelected="imgList_ItemSelected">
+            ItemTapped="ImageList_ItemTapped">
             <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding}" TextColor="Black" FontSize="10"/>
+                            <Label Text="{Binding Name}" TextColor="Black" FontSize="16" Padding="10"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        </ScrollView>
     </StackLayout>
 </ContentPage>
