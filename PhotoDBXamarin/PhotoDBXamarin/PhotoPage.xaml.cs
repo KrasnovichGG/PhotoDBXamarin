@@ -19,7 +19,17 @@ namespace PhotoDBXamarin
             this.model = model;
             title = model.Name;
             InitializeComponent();
-            Gay.Source = ImageSource.FromFile(model.Imagepath);   
+            Gay.Source = ImageSource.FromFile(model.Imagepath);
+            //var pinchGesture = new PinchGestureRecognizer();
+            //pinchGesture.PinchUpdated += (s, e) => {
+            //    // Handle the pinch
+            //};
+            //Gay.GestureRecognizers.Add(pinchGesture);
         }
+        //void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
+        //{
+        //    // Handle the pinch
+        //}
+
     }
 }
