@@ -19,6 +19,10 @@ namespace PhotoDBXamarin
         public MainPage()
         {
             InitializeComponent();
+            ImageList.RefreshCommand = new Command(() =>
+            {
+                ImageList.IsRefreshing = false;
+            });
         }
 
         async void GetPhotoAsync(object sender, EventArgs e)

@@ -45,16 +45,27 @@
             </StackLayout>
         <ScrollView>
             <ListView
+            IsPullToRefreshEnabled="True"
             x:Name="ImageList"
             HasUnevenRows="True"
             ItemTapped="ImageList_ItemTapped">
             <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding Name}" TextColor="Black" FontSize="16" Padding="10"/>
-                    </StackLayout> 
-                </ViewCell>
+                <ViewCell> 
+                            <SwipeView>
+                            <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem 
+                                           Text="Delete"
+                                           IconImageSource="deleteggwp.png"
+                                           BackgroundColor="Red"/>      
+                                    </SwipeItems>
+                            </SwipeView.RightItems>
+                            <StackLayout>
+                            <Label Text="{Binding Name}" TextColor="Black" FontSize="20" Padding="20"/>
+                    </StackLayout>
+                            </SwipeView>
+                        </ViewCell>
             </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
