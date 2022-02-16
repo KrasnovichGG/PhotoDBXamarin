@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PhotoDBXamarin.MainPage" Visual="Material">
     <StackLayout Margin="30,30,30,10">
         <StackLayout>
@@ -58,12 +58,15 @@
                                         <SwipeItem 
                                            Text="Delete"
                                            IconImageSource="deleteggwp.png"
+                                            Clicked="SwipeItem_Clicked"
+                                            CommandParameter="{Binding Id}"
                                            BackgroundColor="Red"/>      
                                     </SwipeItems>
                             </SwipeView.RightItems>
                             <StackLayout>
                             <Label Text="{Binding Name}" TextColor="Black" FontSize="20" Padding="20"/>
-                    </StackLayout>
+                                    <ff:CachedImage Margin="10,20" Source="{Binding Imagepath}"/>
+                                </StackLayout>
                             </SwipeView>
                         </ViewCell>
             </DataTemplate>

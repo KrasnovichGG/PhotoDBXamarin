@@ -101,5 +101,19 @@ namespace PhotoDBXamarin
         {
             await Navigation.PushAsync(new PhotoPage((ProjectModel)e.Item));
         }
+
+        private void SwipeItem_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var id = ((SwipeItem)sender).CommandParameter.ToString();
+                App.Db.DeleteItem(int.Parse(id));
+                UpdateList();
+            }
+            catch(Exception ex)
+            {
+                DisplayAlert("", ex.Message, "OK");
+            }
+        }
     }
 }

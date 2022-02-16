@@ -30,6 +30,9 @@ namespace PhotoDBXamarin.DB
                 return db.Insert(projectModel);
             }
         }
-
+        public int DeleteItem(int id)
+        {
+            return db.Delete<ProjectModel>(id);
+        }
     }
 }
